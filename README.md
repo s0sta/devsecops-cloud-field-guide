@@ -1,90 +1,50 @@
-# GitHub profile achievements — the honest 2026 guide
+# DevOps · Cloud · DevSecOps — field guide
 
-Which profile badges are live, the real tier thresholds, and the ones you cannot
-earn any more no matter how much activity you generate.
+Practical, production-tested notes on running systems where delivery speed and
+security are not a trade-off: secure CI/CD pipelines, hardened Kubernetes,
+guardrailed cloud infrastructure, and Linux servers that stay up.
 
-## Live badges
+Every page here is a checklist or a runbook you can copy into a real
+environment — the control, the command, and the reason it exists. No affiliate
+links, no tool-of-the-week, no theory that collapses on the first incident.
 
-| Badge | Earned by | Tiers (default → gold) |
-| --- | --- | --- |
-| **Pull Shark** | merged pull requests | 2 / 16 / 128 / 1024 |
-| **Starstruck** | stars on a public repository | 16 / 128 / 512 / 4096 |
-| **Pair Extraordinaire** | co-authored merged pull requests | 1 / 10 / 24 / 48 |
-| **Galaxy Brain** | accepted answers in GitHub Discussions | 2 / 8 / 16 / 32 |
-| **YOLO** | merge your own pull request without a review | — |
-| **Quickdraw** | close an issue or PR within 5 minutes | — |
-| **Public Sponsor** | sponsor someone publicly through GitHub Sponsors | — |
+## Inside
 
-## Not obtainable
-
-| Badge | Status |
+| Page | What it covers |
 | --- | --- |
-| Heart On Your Sleeve | disabled — experimental badge, briefly re-enabled by a 2026 backend error, then pulled back |
-| Open Sourcerer | disabled — same story |
-| Arctic Code Vault Contributor | retired — only the 2020 snapshot counts |
-| Mars 2020 Helicopter Contributor | retired — only the 2021 mission snapshot counts |
+| [Pipeline security](docs/pipeline-security.md) | Source → build → artifact → deploy: secrets, SCA/SAST, IaC scanning, SBOM, image signing, provenance, admission control |
+| [Kubernetes hardening](docs/kubernetes-hardening.md) | Pod Security Admission, RBAC, default-deny NetworkPolicy, admission policies, kube-bench baseline |
+| [Cloud baseline — Azure](docs/cloud-baseline-azure.md) | Managed identities, private networking, Key Vault, Defender for Cloud, policy-as-code, Terraform state |
+| [Linux server operations](docs/linux-server-operations.md) | Triage runbook, hardening, patching, certificate hygiene, journal limits |
 
-The practical ceiling is **7 badges**, not 10. The two disabled ones have no
-published criteria and no release date; the two retired ones can never be awarded
-again.
+## Golden rules
 
-## How to earn each live badge
+1. **Every change goes through the pipeline.** No direct pushes to a production
+   branch, no manual `docker push`, no console click that is not also in code.
+2. **Trust nothing you did not build and verify.** Scan dependencies, sign
+   artifacts, attach provenance, and verify at admission — not after deployment.
+3. **Least privilege in every layer.** Cloud identity, Kubernetes RBAC, CI
+   tokens, database users. Short-lived credentials beat long-lived secrets.
+4. **If it is not logged and alerted, it did not happen.** Audit logs, pipeline
+   logs, admission decisions and cloud activity go to one place.
+5. **Rollback is a feature.** The pipeline is not done until a bad release can
+   be reverted in one action.
 
-### Pull Shark — merged pull requests
+## Related projects
 
-Open a pull request that gets merged. It counts in public repositories; private
-repository work does not. The tier path is 2 → 16 → 128 → 1024 merged PRs.
+- **[nabd](https://github.com/s0sta/nabd)** — a doctor for Linux servers: one
+  read-only command finds what is wrong, explains why, and prints the fix.
+- **[secure-delivery-pipeline](https://github.com/s0sta/secure-delivery-pipeline)**
+  — a reference pipeline with signed images, SBOM + SLSA provenance, Argo CD
+  GitOps and Kyverno admission control.
+- **[azure-k3s-platform](https://github.com/s0sta/azure-k3s-platform)** —
+  Terraform-built Azure landing zone with a k3s cluster.
 
-Practical path: contribute small fixes (docs, typos, tests) to open-source
-projects you already use, or make a side project public and ship changes through
-pull requests instead of pushing straight to the default branch.
+## Contributing
 
-### Starstruck — stars on a public repository
+Issues and pull requests are welcome. Keep changes practical: a control without
+a command and a failure mode is not finished.
 
-Reach 16 stars on a single public repository. There is no shortcut: self-stars do
-not count. The only path is publishing something useful and telling people about
-it.
+## License
 
-### Pair Extraordinaire — co-authored merged pull requests
-
-Add a co-author trailer to a commit in a pull request that gets merged:
-
-```
-Co-authored-by: Name <their-github-email@example.com>
-```
-
-The email must match the co-author's GitHub account, otherwise the commit is not
-linked to them and nothing is awarded.
-
-### Galaxy Brain — accepted answers in Discussions
-
-Answer questions in repositories that have Discussions enabled, and have your
-answer marked as the accepted answer. Default tier needs 2 accepted answers.
-
-### YOLO — merge without review
-
-On a repository you own: create a branch, make a change, open a pull request,
-merge it yourself without requesting a review.
-
-### Quickdraw — close within 5 minutes
-
-Open an issue or a pull request and close it within 5 minutes. Legitimate use:
-open a follow-up issue, resolve it immediately, and close it with the fix.
-
-### Public Sponsor — sponsor publicly
-
-Become a public sponsor of any developer or project through GitHub Sponsors. A
-public (visible) sponsorship of $1/month is enough; private sponsorships do not
-count.
-
-## What "x2" means on a badge
-
-Tiered achievements show a small counter. `Pull Shark x2` means the **second
-tier** (16 merged PRs), not two separate badges. Tier upgrades happen
-automatically; there is nothing to claim.
-
-## Sources
-
-- GitHub Community Discussions, "Free available badges" — https://github.com/orgs/community/discussions/175547
-- Community achievement guide, September 2026 status — https://github.com/SahilAkoliya-Dev/github-achievement-badges
-- "GitHub Quietly Broke 2 Achievement Badges in 2026" — https://dev.to/sahil_akoliya_dev/github-quietly-broke-2-achievement-badges-in-2026-heres-what-actually-works-3a1d
+MIT — see [LICENSE](LICENSE).
