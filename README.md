@@ -48,3 +48,11 @@ a command and a failure mode is not finished.
 ## License
 
 MIT — see [LICENSE](LICENSE).
+
+## Made by s0sta
+
+Built and maintained by **s0sta** — IT Manager and DevSecOps engineer in Riyadh.
+
+More notes, study pages and projects: [s0sta.com](https://s0sta.com) ·
+[LinkedIn](https://www.linkedin.com/in/hosam-hani-abdelati/) ·
+[X](https://x.com/s0sta_)
